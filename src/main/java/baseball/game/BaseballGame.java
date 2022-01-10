@@ -2,26 +2,34 @@ package baseball.game;
 
 import baseball.opponent.MakeOpponentNumber;
 import baseball.player.ConsoleAndSwing;
-import baseball.player.MakePlayerNumber;
-import java.util.List;
 import nextstep.utils.Console;
 
-public class Start {
-    MakeOpponentNumber makeOpponentNumber;
-    public Start() {
+public class BaseballGame {
+    private static BaseballGame game = null;
+    private MakeOpponentNumber makeOpponentNumber;
+
+    public BaseballGame() {
+    }
+
+    public static BaseballGame getInstance() {
+        if (game == null) {
+            game = new BaseballGame();
+        }
+        return game;
+    }
+
+    public void start() {
         do {
             newGame();
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        } while (textConsoleIfWantNewGame(Console.readLine()) == 0);
+        } while (text1AtConsoleIfWantNewGame(Console.readLine()) == 1);
     }
 
-    public int textConsoleIfWantNewGame(String userConsole) {
+    public int text1AtConsoleIfWantNewGame(String userConsole) {
         if (userConsole.equals("1")) {
-            return 0;
-        } else if (userConsole.equals("2")) {
             return 1;
         }
-        return -1;
+        return 0;
     }
 
     public void newGame() {

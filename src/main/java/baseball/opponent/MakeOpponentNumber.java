@@ -4,40 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MakeOpponentNumber {
-
     private List<Integer> list;
+
     public MakeOpponentNumber() {
+        list = new ArrayList<>();
         run();
     }
 
     public void run() {
-        list = new ArrayList<>();
-        MakeThreeNumber();
-    }
-
-    public List<Integer> MakeThreeNumber() {
         while (list.size() < 3) {
-            int num = insertNewNumber();
-
-            if (num != 0) {
-                list.add(num);
-            }
+            appendNewNumber();
         }
-        //printList();
-        return list;
     }
 
-    public int insertNewNumber() {
+    public void appendNewNumber() {
         ExtractRandomNumber number = new ExtractRandomNumber();
-        int newNumber = number.RANDOMNUM;
-        //System.out.println("newNumber::" + newNumber);
+        int newNumber = number.getRandomNumber();
 
         CheckDuplicateNumber checkDuplicateNumber = new CheckDuplicateNumber();
 
-        if (!checkDuplicateNumber.checkDuplicateNumber(list, newNumber)) {
-            return 0;
+        if (!checkDuplicateNumber.isDuplicateNumber(list, newNumber)) {
+            list.add(newNumber);
         }
-        return newNumber;
     }
 
     public List<Integer> getList() {
@@ -48,6 +36,6 @@ public class MakeOpponentNumber {
         for (int i : list) {
             System.out.print(i+" ");
         }
-        System.out.println("======");
+        System.out.println();
     }
 }

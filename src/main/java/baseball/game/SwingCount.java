@@ -1,8 +1,8 @@
 package baseball.game;
 
 public class SwingCount {
-    int strikeCnt = 0;
-    int ballCnt = 0;
+    private int strikeCnt = 0;
+    private int ballCnt = 0;
 
     private static SwingCount instance = null;
 

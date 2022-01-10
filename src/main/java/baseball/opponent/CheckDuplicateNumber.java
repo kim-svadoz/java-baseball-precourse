@@ -8,10 +8,10 @@ public class CheckDuplicateNumber {
 
     }
 
-    public boolean checkDuplicateNumber(List<Integer> list, int newNumber) {
+    public boolean isDuplicateNumber(List<Integer> list, int newNumber) {
         if (list.contains(newNumber)) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }
