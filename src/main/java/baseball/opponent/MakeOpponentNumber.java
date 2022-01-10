@@ -5,13 +5,13 @@ import java.util.List;
 
 public class MakeOpponentNumber {
 
-    List<Integer> list;
+    private List<Integer> list;
     public MakeOpponentNumber() {
-        list = new ArrayList<>();
         run();
     }
 
     public void run() {
+        list = new ArrayList<>();
         MakeThreeNumber();
     }
 
@@ -23,15 +23,14 @@ public class MakeOpponentNumber {
                 list.add(num);
             }
         }
-        System.out.println("make number list complete");
-        printList();
+        //printList();
         return list;
     }
 
     public int insertNewNumber() {
         ExtractRandomNumber number = new ExtractRandomNumber();
         int newNumber = number.RANDOMNUM;
-        System.out.println("newNumber::" + newNumber);
+        //System.out.println("newNumber::" + newNumber);
 
         CheckDuplicateNumber checkDuplicateNumber = new CheckDuplicateNumber();
 
@@ -41,9 +40,14 @@ public class MakeOpponentNumber {
         return newNumber;
     }
 
+    public List<Integer> getList() {
+        return list;
+    }
+
     public void printList() {
         for (int i : list) {
             System.out.print(i+" ");
         }
+        System.out.println("======");
     }
 }
