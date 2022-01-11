@@ -1,29 +1,40 @@
-package baseball.player;
+package baseball.player.user;
 
+import baseball.player.MakeNumber;
 import java.util.ArrayList;
 import java.util.List;
 import nextstep.utils.Console;
 
-public class MakePlayerNumber {
+public class MakeUserNumber implements MakeNumber{
+
     private List<Integer> list;
     private String line = "";
 
-    public MakePlayerNumber() {
+    public static MakeUserNumber getUserNumber() {
+        return new MakeUserNumber();
+    }
+
+    public MakeUserNumber() {
         list = new ArrayList<>();
         run();
     }
 
+    @Override
     public void run() {
-        convertString2IntegerList(setConsole());
+        untilConsoleIsCorrect(setConsole());
+        appendNumber();
     }
 
-    public void convertString2IntegerList(String line) {
-        while (PlayerConsoleError.isError(line)) {
-            line = setConsole();
-        }
-
+    @Override
+    public void appendNumber() {
         for (char c : line.toCharArray()) {
             list.add(c - '0');
+        }
+    }
+
+    public void untilConsoleIsCorrect(String line) {
+        while (UserConsoleError.isError(line)) {
+            line = setConsole();
         }
     }
 

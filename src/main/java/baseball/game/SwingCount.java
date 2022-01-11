@@ -1,6 +1,7 @@
 package baseball.game;
 
 public class SwingCount {
+
     private int strikeCnt = 0;
     private int ballCnt = 0;
 
@@ -16,7 +17,7 @@ public class SwingCount {
         return instance;
     }
 
-    public void checkStrikeOrBall(boolean ref) {
+    public void increaseStrikeAndBallCnt(boolean ref) {
         if (ref) {
             this.strikeCnt++;
             return;

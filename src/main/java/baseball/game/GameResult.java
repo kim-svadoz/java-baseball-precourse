@@ -1,16 +1,22 @@
 package baseball.game;
 
 public class GameResult {
+
     private int strike = 0;
     private int ball = 0;
+
+    public static GameResult from(SwingCount swingCount) {
+        return new GameResult(swingCount);
+    }
+
     public GameResult(SwingCount swingCount) {
         this.strike = swingCount.getStrikeCnt();
         this.ball = swingCount.getBallCnt();
     }
 
     public boolean getResult() {
-        if (strike == 3) {
-            return threeStrike();
+        if (strike == Round.getRound()) {
+            return AllStrike();
         }
         if (strike == 0 && ball == 0) {
             return nothing();
@@ -19,8 +25,8 @@ public class GameResult {
         return strikeAndBall();
     }
 
-    public boolean threeStrike() {
-        System.out.println("3스트라이크 게임 끝");
+    public boolean AllStrike() {
+        System.out.println(Round.getRound()+"스트라이크 게임 끝");
         return true;
     }
 

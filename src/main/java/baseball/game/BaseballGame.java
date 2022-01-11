@@ -1,12 +1,13 @@
 package baseball.game;
 
-import baseball.opponent.MakeOpponentNumber;
-import baseball.player.ConsoleAndSwing;
+import baseball.player.opponent.MakeOpponentNumber;
+import baseball.player.user.MakeUserNumber;
+import java.util.List;
 import nextstep.utils.Console;
 
 public class BaseballGame {
+
     private static BaseballGame game = null;
-    private MakeOpponentNumber makeOpponentNumber;
 
     public BaseballGame() {
     }
@@ -22,29 +23,31 @@ public class BaseballGame {
         do {
             newGame();
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        } while (text1AtConsoleIfWantNewGame(Console.readLine()) == 1);
+        } while (text1AtConsoleIfWantNewGame(Console.readLine()));
     }
 
-    public int text1AtConsoleIfWantNewGame(String userConsole) {
+    public boolean text1AtConsoleIfWantNewGame(String userConsole) {
         if (userConsole.equals("1")) {
-            return 1;
+            return true;
         }
-        return 0;
+        return false;
     }
 
     public void newGame() {
         // 컴퓨터의 무작위 숫자 3자리를 가져온다.
-        makeOpponentNumber = new MakeOpponentNumber();
+        List<Integer> computerNumbers = MakeOpponentNumber.getComputerNumber().getList();
 
-        // 플레이어의 숫자를 입력받고 게임을 진행한다.
-        ConsoleAndSwing consoleAndSwing = new ConsoleAndSwing(makeOpponentNumber);
+        // 플레이어의 콘솔 숫자 3자리를 가져온다.
+        List<Integer> userNumbers = MakeUserNumber.getUserNumber().getList();
 
-        // 게임 결과를 확인한다.
-        boolean result = consoleAndSwing.getResult();
+        // 게임을 진행하고 결과를 확인한다.
+        Swing swing = Swing.contrastEachOther(computerNumbers, userNumbers, Round.getRound());
+        boolean result = swing.getResult();
 
         while (!result) {
-            consoleAndSwing = new ConsoleAndSwing(makeOpponentNumber);
-            result = consoleAndSwing.getResult();
+            userNumbers = MakeUserNumber.getUserNumber().getList();
+            swing = Swing.contrastEachOther(computerNumbers, userNumbers, Round.getRound());
+            result = swing.getResult();
         }
     }
 }

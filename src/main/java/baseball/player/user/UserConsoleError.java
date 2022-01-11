@@ -1,19 +1,15 @@
-package baseball.player;
+package baseball.player.user;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import baseball.game.Round;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class PlayerConsoleError {
-    public PlayerConsoleError() {}
+public class UserConsoleError {
+
+    public UserConsoleError() {}
 
     public static boolean isError(String line) {
-        line = line.trim();
-
-        if (NoneThreeDigitsError(line) || NoneAlphabeticError(line) || DuplicateNumberError(line)) {
+        if (InCorrectLengthError(line) || NotAlphabeticError(line) || DuplicateNumberError(line)) {
             return true;
         }
 
@@ -34,15 +30,15 @@ public class PlayerConsoleError {
         return false;
     }
 
-    private static boolean NoneThreeDigitsError(String line) {
-        if (line.length() != 3) {
-            System.out.println("[ERROR] 정확히 3자리 숫자를 입력해 주세요.");
+    private static boolean InCorrectLengthError(String line) {
+        if (line.length() != Round.getRound()) {
+            System.out.println("[ERROR] 정확히 "+Round.getRound()+"자리 숫자를 입력해 주세요.");
             return true;
         }
         return false;
     }
 
-    private static boolean NoneAlphabeticError(String line) {
+    private static boolean NotAlphabeticError(String line) {
         boolean isNumeric = line.chars().allMatch(Character::isDigit);
 
         if (!isNumeric) {
