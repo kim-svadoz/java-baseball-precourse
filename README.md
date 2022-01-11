@@ -20,7 +20,7 @@
 - ~~들여쓰기는 4spaces~~
 - ~~indent는 3depth를 넘지 않도록. (2depth 까지만 허용)~~
 - ~~3항연산자 사용불가~~
-- 함수는 한 가지 일만 하도록 최대한 작게.
+- ~~함수는 한 가지 일만 하도록 최대한 작게.~~
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
