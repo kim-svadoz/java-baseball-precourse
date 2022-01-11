@@ -40,7 +40,12 @@ public class MakeUserNumber implements MakeNumber{
 
     public String setConsole() {
         System.out.print("숫자를 입력해 주세요 : ");
-        return line = Console.readLine();
+        try {
+            line = Console.readLine();
+        } catch (IllegalArgumentException e) {
+
+        }
+        return line;
     }
 
     public List<Integer> getList() {
